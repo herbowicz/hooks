@@ -1,32 +1,24 @@
 import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 
-const Countdown = ({ from }) => {
-    const [count, setCount] = useState(from);
-    const countdown = () => setCount(count - 1);
+const Clock = () => {
+    const [currentCount, setCount] = useState(10);
+    const timer = () => setCount(currentCount - 1);
 
     useEffect(
         () => {
-            if (count <= 0) {
+            if (currentCount <= 0) {
                 return;
             }
-            const id = setTimeout(countdown, 1000);
-            return () => clearTimeout(id);
+            const id = setInterval(timer, 1000);
+            return () => clearInterval(id);
         },
-        [count]
+        [currentCount]
     );
 
-    return (
-        <>
-            {count === 0 ? (
-                <h2>Time's up!</h2>
-            ) : (
-                <p>Counting down {count} seconds...</p>
-            )}
-        </>
-    );
+    return <div>{currentCount}</div>;
 };
 
-const App = () => <Countdown from="10" />;
+const App = () => <Clock />;
 
 ReactDOM.render(<App />, document.getElementById('root'));
