@@ -1,38 +1,32 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
-import * as serviceWorker from './serviceWorker';
-import './main.css';
 
-function Counter({ initialCount }) {
-    const [count, setCount] = useState(initialCount);
+const Countdown = ({ from }) => {
+    const [count, setCount] = useState(from);
+    const countdown = () => setCount(count - 1);
+
+    useEffect(
+        () => {
+            if (count <= 0) {
+                return;
+            }
+            const id = setTimeout(countdown, 1000);
+            return () => clearTimeout(id);
+        },
+        [count]
+    );
+
     return (
         <>
-            Count: {count}
-            <br />
-            <br />
-            <button onClick={() => setCount(0)}>Reset</button>
-            <button onClick={() => setCount(prevCount => prevCount + 1)}>
-                +
-            </button>
-            <button onClick={() => setCount(prevCount => prevCount - 1)}>
-                -
-            </button>
+            {count === 0 ? (
+                <h2>Time's up!</h2>
+            ) : (
+                <p>Counting down {count} seconds...</p>
+            )}
         </>
     );
-}
+};
 
-function App() {
-    return (
-        <div className="App">
-            <h1>React Hooks Example</h1>
-            <Counter initialCount={0} />
-        </div>
-    );
-}
+const App = () => <Countdown from="10" />;
 
 ReactDOM.render(<App />, document.getElementById('root'));
-
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: http://bit.ly/CRA-PWA
-serviceWorker.unregister();
