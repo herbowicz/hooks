@@ -1,24 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom';
 
-const Clock = () => {
-    const [currentCount, setCount] = useState(10);
-    const timer = () => setCount(currentCount - 1);
+import CountDown from './CountDown'
+import Counter from './Counter'
 
-    useEffect(
-        () => {
-            if (currentCount <= 0) {
-                return;
-            }
-            const id = setInterval(timer, 1000);
-            return () => clearInterval(id);
-        },
-        [currentCount]
-    );
-
-    return <div>{currentCount}</div>;
-};
-
-const App = () => <Clock />;
+const App = () => <>
+    <CountDown /><hr />
+    <Counter /><hr />
+</>;
 
 ReactDOM.render(<App />, document.getElementById('root'));
