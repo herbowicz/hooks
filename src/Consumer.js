@@ -1,9 +1,9 @@
 import React, { useContext } from "react";
-import { MyContext } from './Context';
+import { MyContext } from "./Context";
 
 const Consumer = () => {
-    const value = useContext(MyContext);
-    return <div>{value} is from Context.</div>;
-}
+  const val = useContext(MyContext);
+  return <div>{val} is from Context.</div>;
+};
 
 export default Consumer;
