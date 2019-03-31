@@ -4,9 +4,10 @@ import ReactDOM from "react-dom";
 import CountDown from "./CountDown";
 import Counter from "./Counter";
 import CustomInput from "./CustomInput";
-import Context from "./Context";
 import Fetch from "./Fetch";
+import Context from "./Context";
 import Context2 from "./Context2";
+import Context3 from "./Context3";
 
 const App = () => (
   <>
@@ -21,6 +22,8 @@ const App = () => (
     <Context />
     <hr />
     <Context2 />
+    <hr />
+    <Context3 />
     <hr />
   </>
 );
